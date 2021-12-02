@@ -1,7 +1,8 @@
 import pandas as pd
 
-
 from pathlib import Path
+
+from challenges.helper.wrapper import day_wrapper
 
 
 class Command:
@@ -25,7 +26,6 @@ class Command:
                 pars['depth']+=pars['aim']*amount
             else:
                 raise ValueError('Unknown command: '+ command)
-        print(pars)
         return pars['h_pos']*pars['depth']
 
     @classmethod
@@ -33,6 +33,10 @@ class Command:
         path = f'{Path(__file__).parent}/data/commands.txt'
         return cls(pd.read_csv(path, sep=' ', names=['command', 'amount']))
 
-com = Command.read_file()
-print(com.command_with_aim())
+    @staticmethod
+    @day_wrapper
+    def run():
+        com = Command.read_file()
+        print(f"Submarine at {com.count_inst()}.")
+        print(f"Submarine with aim at {com.command_with_aim()}.")
 

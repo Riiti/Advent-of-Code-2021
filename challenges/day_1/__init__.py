@@ -2,6 +2,8 @@ import numpy as np
 
 from pathlib import Path
 
+from challenges.helper.wrapper import day_wrapper
+
 
 class Sonar:
     def __init__(self, array:np.array) -> None:
@@ -21,5 +23,12 @@ class Sonar:
         with open(path) as f:
             data = [int(line) for line in f.readlines()]
         return cls(np.array(data))
+    
+    @staticmethod
+    @day_wrapper
+    def run():
+        sonar = Sonar.read_file()
+        print(f"Values larger than the previous {sonar.get_num_of_larger()}.")
+        print(f"Values larger than the previous in sliding window of three {sonar.larger_in_window_of_three()}.")
 
 
