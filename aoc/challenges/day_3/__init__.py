@@ -32,7 +32,9 @@ class Diagnostik(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        com = Diagnostik.read_file()
+        diag = Diagnostik.read_file()
+        print(f"Power consumption of Submarine is {diag.part_one()}.")
+        print(f"Life support rating is {diag.part_two()}.")
 
     @staticmethod
     def recursive_solver(data: np.array, index: int = 0, co_scrub: bool = False):
@@ -48,8 +50,3 @@ class Diagnostik(Challenge):
 
         # Recureivly calculate data
         return Diagnostik.recursive_solver(data, index=(index + 1), co_scrub=co_scrub)
-
-
-diag = Diagnostik.read_file()
-
-print(diag.part_two())
