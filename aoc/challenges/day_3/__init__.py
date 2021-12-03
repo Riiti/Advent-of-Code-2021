@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 
 from pathlib import Path
-from aoc.challenges.helper.abstract import Challenge
+from aoc.helper.abstract import Challenge
 
-from aoc.challenges.helper.wrapper import day_wrapper
+from aoc.helper.wrapper import day_wrapper
 
 
 class Diagnostik(Challenge):
