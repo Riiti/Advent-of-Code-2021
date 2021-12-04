@@ -15,19 +15,6 @@ class Diagnostik(Challenge):
         self.numbers = numbers
         self.fields = fields
 
-    def part_one(self):
-        for index in range(5, len(self.numbers)):
-            value = self.check_fields(index)
-            if value:
-                return value
-
-    def part_two(self):
-        for index in range(5, len(self.numbers)):
-            wins = self.check_fields(index)
-            if wins:
-                last_win = wins
-        return last_win
-
     @classmethod
     def read_file(cls):
         path = f"{Path(__file__).parent}/data/bingo.txt"
@@ -43,17 +30,31 @@ class Diagnostik(Challenge):
         for field in fields:
             yield np.array(re.findall(number_regex, field)).reshape(5, 5).astype(int)
 
-    def check_fields(self, index: int, first: bool = True) -> Union[int, List]:
-        found = False
-        numbers = self.numbers[:index]
-        for field in self.fields:
-            found = Diagnostik.check_axis(field, numbers)
-            if found and first:
-                return found
-        return found
+    def part_one(self):
+        for index in range(5, len(self.numbers)):
+            value = self.check_fields(index)
+            if value:
+                return value
 
-    @staticmethod
-    def check_axis(field: np.array, number: List, axis: int = 0) -> int:
+    def part_two(self):
+        self.solved = [0] * len(self.fields)
+        for index in range(5, len(self.numbers)):
+            value = self.check_fields(index, first=False)
+            if value:
+                return value
+
+    def check_fields(self, index: int, first: bool = True) -> Union[int, List]:
+        numbers = self.numbers[:index]
+        for i, field in enumerate(self.fields):
+            found = Diagnostik.check_axis(field, numbers)
+            if found:
+                self.solved[i] = 1
+                if first:
+                    return found
+                if all(self.solved):
+                    return found
+
+    def check_axis(field: np.array, number: List) -> int:
         for i in range(5):
             # Check rows
             row_values = field[i, :]
@@ -62,7 +63,7 @@ class Diagnostik(Challenge):
             # Check columns
             column_values = field[:, i]
             in_column = [field_number in number for field_number in column_values]
-            if any((all(in_row), all(in_row))):
+            if any((all(in_row), all(in_column))):
                 return Diagnostik.calc_stat(field, number)
 
     @staticmethod
@@ -79,5 +80,5 @@ class Diagnostik(Challenge):
         print(f"Life support rating is {diag.part_two()}.")
 
 
-print(Diagnostik.read_file().part_one())
+# print(Diagnostik.read_file().part_one())
 print(Diagnostik.read_file().part_two())
