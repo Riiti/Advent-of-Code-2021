@@ -3,8 +3,6 @@ from pathlib import Path
 from typing import List, Union
 
 import numpy as np
-import pandas as pd
-from numpy.core.records import array
 
 from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
