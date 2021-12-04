@@ -10,10 +10,11 @@ from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
-class Diagnostik(Challenge):
+class Bingo(Challenge):
     def __init__(self, numbers: List, fields: List[np.array]) -> None:
         self.numbers = numbers
         self.fields = fields
+        self.solved = [0] * len(self.fields)
 
     @classmethod
     def read_file(cls):
@@ -21,7 +22,7 @@ class Diagnostik(Challenge):
         with open(path) as f:
             blocks = f.read().split("\n\n")
             numbers = [int(num) for num in blocks[0].split(",")]
-            fields = [*Diagnostik.field_to_numbers(blocks[1:])]
+            fields = [*Bingo.field_to_numbers(blocks[1:])]
         return cls(numbers, fields)
 
     @staticmethod
@@ -37,7 +38,6 @@ class Diagnostik(Challenge):
                 return value
 
     def part_two(self):
-        self.solved = [0] * len(self.fields)
         for index in range(5, len(self.numbers)):
             value = self.check_fields(index, first=False)
             if value:
@@ -46,7 +46,7 @@ class Diagnostik(Challenge):
     def check_fields(self, index: int, first: bool = True) -> Union[int, List]:
         numbers = self.numbers[:index]
         for i, field in enumerate(self.fields):
-            found = Diagnostik.check_axis(field, numbers)
+            found = Bingo.check_axis(field, numbers)
             if found:
                 self.solved[i] = 1
                 if first:
@@ -64,7 +64,7 @@ class Diagnostik(Challenge):
             column_values = field[:, i]
             in_column = [field_number in number for field_number in column_values]
             if any((all(in_row), all(in_column))):
-                return Diagnostik.calc_stat(field, number)
+                return Bingo.calc_stat(field, number)
 
     @staticmethod
     def calc_stat(field: np.array, numbers: List) -> int:
@@ -75,10 +75,6 @@ class Diagnostik(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        diag = Diagnostik.read_file()
-        print(f"Power consumption of Submarine is {diag.part_one()}.")
-        print(f"Life support rating is {diag.part_two()}.")
-
-
-# print(Diagnostik.read_file().part_one())
-print(Diagnostik.read_file().part_two())
+        diag = Bingo.read_file()
+        print(f"Bingo Score to win: {diag.part_one()}.")
+        print(f"Last board to win: {diag.part_two()}.")
