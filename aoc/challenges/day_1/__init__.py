@@ -1,9 +1,9 @@
-import numpy as np
-
 from pathlib import Path
 
-from aoc.helper.wrapper import day_wrapper
+import numpy as np
+
 from aoc.helper.abstract import Challenge
+from aoc.helper.wrapper import day_wrapper
 
 
 class Sonar(Challenge):

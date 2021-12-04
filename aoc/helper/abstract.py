@@ -22,4 +22,4 @@ class Challenge(ABC):
     @staticmethod
     @abstractmethod
     def run():
-        """ Solve the quiz"""
+        """Solve the quiz"""

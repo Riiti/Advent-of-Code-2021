@@ -1,9 +1,9 @@
-import pandas as pd
-import numpy as np
-
 from pathlib import Path
-from aoc.helper.abstract import Challenge
 
+import numpy as np
+import pandas as pd
+
+from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
@@ -18,8 +18,12 @@ class Diagnostik(Challenge):
         return gamma * epsilon
 
     def part_two(self):
-        oxygen_gen = Diagnostik.recursive_solver(self.values, index=0, co_scrub=True)
-        co_scrubber = Diagnostik.recursive_solver(self.values, index=0, co_scrub=False)
+        oxygen_gen = Diagnostik.recursive_solver(
+            self.values, index=0, co_scrub=True
+        )
+        co_scrubber = Diagnostik.recursive_solver(
+            self.values, index=0, co_scrub=False
+        )
         return oxygen_gen * co_scrubber
 
     @classmethod
@@ -37,7 +41,9 @@ class Diagnostik(Challenge):
         print(f"Life support rating is {diag.part_two()}.")
 
     @staticmethod
-    def recursive_solver(data: np.array, index: int = 0, co_scrub: bool = False):
+    def recursive_solver(
+        data: np.array, index: int = 0, co_scrub: bool = False
+    ):
         if len(data) == 1:
             return int("".join(str(bina) for bina in data[0]), 2)
 
@@ -49,4 +55,6 @@ class Diagnostik(Challenge):
         data = data[data[:, index] == mean]
 
         # Recureivly calculate data
-        return Diagnostik.recursive_solver(data, index=(index + 1), co_scrub=co_scrub)
+        return Diagnostik.recursive_solver(
+            data, index=(index + 1), co_scrub=co_scrub
+        )
