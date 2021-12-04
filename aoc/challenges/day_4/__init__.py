@@ -27,7 +27,7 @@ class Bingo(Challenge):
 
     @staticmethod
     def field_to_numbers(fields: List) -> List[List[int]]:
-        number_regex = "\d{1,2}"
+        number_regex = r"\d{1,2}"
         for field in fields:
             yield np.array(re.findall(number_regex, field)).reshape(5, 5).astype(int)
 
