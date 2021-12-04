@@ -1,7 +1,8 @@
+from unittest.mock import patch
+
 import numpy as np
 import pandas as pd
 import pytest
-from unittest.mock import patch
 
 from aoc.challenges.day_2 import Command
 
@@ -10,7 +11,14 @@ def _mock_file():
     return Command(
         pd.DataFrame(
             {
-                "command": ["forward", "down", "forward", "up", "down", "forward"],
+                "command": [
+                    "forward",
+                    "down",
+                    "forward",
+                    "up",
+                    "down",
+                    "forward",
+                ],
                 "amount": [5, 5, 8, 3, 8, 2],
             }
         )

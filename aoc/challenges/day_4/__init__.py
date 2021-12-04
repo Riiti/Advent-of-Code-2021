@@ -1,12 +1,12 @@
-from numpy.core.records import array
-import pandas as pd
-import numpy as np
 import re
-
 from pathlib import Path
 from typing import List, Union
-from aoc.helper.abstract import Challenge
 
+import numpy as np
+import pandas as pd
+from numpy.core.records import array
+
+from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
@@ -29,7 +29,9 @@ class Bingo(Challenge):
     def field_to_numbers(fields: List) -> List[List[int]]:
         number_regex = r"\d{1,2}"
         for field in fields:
-            yield np.array(re.findall(number_regex, field)).reshape(5, 5).astype(int)
+            yield np.array(re.findall(number_regex, field)).reshape(
+                5, 5
+            ).astype(int)
 
     def part_one(self):
         for index in range(5, len(self.numbers)):
@@ -62,7 +64,9 @@ class Bingo(Challenge):
 
             # Check columns
             column_values = field[:, i]
-            in_column = [field_number in number for field_number in column_values]
+            in_column = [
+                field_number in number for field_number in column_values
+            ]
             if any((all(in_row), all(in_column))):
                 return Bingo.calc_stat(field, number)
 
