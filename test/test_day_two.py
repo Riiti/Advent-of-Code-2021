@@ -1,8 +1,6 @@
 from unittest.mock import patch
 
-import numpy as np
 import pandas as pd
-import pytest
 
 from aoc.challenges.day_2 import Command
 
