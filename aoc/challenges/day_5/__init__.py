@@ -8,14 +8,14 @@ from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
-class Sonar(Challenge):
+class Vents(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
     @classmethod
     def read_file(cls) -> Challenge:
         number_regex = r"\d+"
-        path = f"{Path(__file__).parent}/data/sonar.txt"
+        path = f"{Path(__file__).parent}/data/vents.txt"
         with open(path) as f:
             numbers = [re.findall(number_regex, lin) for lin in f.readlines()]
         return cls(np.array(numbers).astype(int))
@@ -60,7 +60,7 @@ class Sonar(Challenge):
 
     @staticmethod
     def calc_missing_coords(line: np.array) -> List[Tuple[int, int]]:
-        coords = Sonar.check_for_diagonal(line)
+        coords = Vents.check_for_diagonal(line)
         if coords:
             return coords
         x1, y1, x2, y2 = line
@@ -84,9 +84,6 @@ class Sonar(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        diag = Sonar.read_file()
+        diag = Vents.read_file()
         print(f"More than one vent {diag.part_one()}.")
         print(f"More than one vent with diagonals {diag.part_two()}.")
-
-
-Sonar.read_file()

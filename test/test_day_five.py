@@ -2,11 +2,11 @@ from unittest.mock import patch
 
 import numpy as np
 
-from aoc.challenges.day_5 import Sonar
+from aoc.challenges.day_5 import Vents
 
 
 def _mock_file():
-    return Sonar(
+    return Vents(
         np.array(
             [
                 [0, 9, 5, 9],
@@ -24,11 +24,11 @@ def _mock_file():
     )
 
 
-@patch("aoc.challenges.day_5.Sonar.read_file", _mock_file)
+@patch("aoc.challenges.day_5.Vents.read_file", _mock_file)
 def test_day_two_one():
-    assert Sonar.read_file().part_one() == 5
+    assert Vents.read_file().part_one() == 5
 
 
-@patch("aoc.challenges.day_5.Sonar.read_file", _mock_file)
+@patch("aoc.challenges.day_5.Vents.read_file", _mock_file)
 def test_day_two_two():
-    assert Sonar.read_file().part_two() == 12
+    assert Vents.read_file().part_two() == 12
