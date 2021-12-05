@@ -7,7 +7,6 @@ authors = ["Niklas Rittmann <niklas.rittmann@me.com>"]
 [tool.black]
 line-length = 80
 
-
 [tool.isort]
 known_third_party = ["numpy", "pandas", "pytest"]
 
