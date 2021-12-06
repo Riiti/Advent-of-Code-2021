@@ -9,7 +9,7 @@ from aoc.helper.wrapper import day_wrapper
 @lru_cache
 def solve_with_recursion(days_till_spawn: int, days: int) -> int:
     """Calculates how many fish are spwaned by every lanternfish"""
-    if days == 0:
+    if days_till_spawn >= days:
         return 1
     if days_till_spawn == 0:
         return solve_with_recursion(8, days - 1) + solve_with_recursion(
