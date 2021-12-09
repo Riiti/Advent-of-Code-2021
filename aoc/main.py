@@ -6,6 +6,7 @@ from aoc.challenges.day_5 import Vents
 from aoc.challenges.day_6 import Lanternfish
 from aoc.challenges.day_7 import Whales
 from aoc.challenges.day_8 import Digits
+from aoc.challenges.day_9 import Lava
 
 Sonar.run()
 Command.run()
@@ -15,3 +16,4 @@ Vents.run()
 Lanternfish.run()
 Whales.run()
 Digits.run()
+Lava.run()
