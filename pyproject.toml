@@ -9,7 +9,6 @@ line-length = 80
 
 [tool.isort]
 known_third_party = ["numpy", "pandas", "pytest"]
-skip = ["main.py"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=aoc"
