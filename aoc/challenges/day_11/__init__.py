@@ -29,6 +29,15 @@ def recursive_solver(
     return recursive_solver(map, iteration + 1, stop_con, count + flashes)
 
 
+def flash_together(map: np.array, iteration: int = 0):
+    if np.sum(map) == 0:
+        return iteration
+
+    map[1:-1, 1:-1] += 1
+    map, _ = add_adjacent(map, 0)
+    return flash_together(map, iteration + 1)
+
+
 def add_adjacent(light_map: np.array, count: int) -> np.array:
     map_wo_border = light_map[1:-1, 1:-1]
     coords = np.argwhere([map_wo_border > 9])
@@ -69,7 +78,7 @@ class Lights(Challenge):
         print(recursive_solver(self.numbers))
 
     def part_two(self) -> int:
-        pass
+        print(flash_together(self.numbers))
 
     @staticmethod
     @day_wrapper
@@ -79,4 +88,4 @@ class Lights(Challenge):
         print(f"Missing brackets score {syn.part_two()}.")
 
 
-print(Lights.read_file().part_one())
+print(Lights.read_file().part_two())
