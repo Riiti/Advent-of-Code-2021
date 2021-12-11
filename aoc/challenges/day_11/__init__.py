@@ -1,3 +1,4 @@
+import copy
 from pathlib import Path
 from typing import List
 
@@ -75,10 +76,10 @@ class Lights(Challenge):
         )
 
     def part_one(self) -> int:
-        print(recursive_solver(self.numbers))
+        return recursive_solver(copy.deepcopy(self.numbers))
 
     def part_two(self) -> int:
-        print(flash_together(self.numbers))
+        return flash_together(copy.deepcopy(self.numbers))
 
     @staticmethod
     @day_wrapper
@@ -88,4 +89,4 @@ class Lights(Challenge):
         print(f"Missing brackets score {syn.part_two()}.")
 
 
-print(Lights.read_file().part_two())
+print(Lights.read_file().run())
