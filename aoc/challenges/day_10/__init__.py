@@ -56,8 +56,8 @@ class Syntax(Challenge):
     @day_wrapper
     def run():
         syn = Syntax.read_file()
-        print(f"Lava lowspots {syn.part_one()}.")
-        print(f"Digits encoding {syn.part_two()}.")
+        print(f"Syntax score {syn.part_one()}.")
+        print(f"Missing brackets score {syn.part_two()}.")
 
 
 print(Syntax.read_file().part_two())
