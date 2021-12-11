@@ -72,7 +72,11 @@ class Lava(Challenge):
         with open(path) as f:
             for line in f.readlines():
                 lava.append([9] + [int(num) for num in line.strip()] + [9])
-        lava = [[9] * (len(line) + 2), *lava, [9] * (len(line) + 2)]
+        lava = [
+            [9] * (len(line.strip()) + 2),
+            *lava,
+            [9] * (len(line.strip()) + 2),
+        ]
         return cls(lava)
 
     def part_one(self) -> int:
