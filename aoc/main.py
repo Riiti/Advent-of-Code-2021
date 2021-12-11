@@ -1,6 +1,6 @@
 # fmt: off
-from aoc import (Bingo, Command, Diagnostik, Digits, Lanternfish, Lava, Sonar,
-                 Syntax, Vents, Whales)
+from aoc import (Bingo, Command, Diagnostik, Digits, Lanternfish, Lava, Lights,
+                 Sonar, Syntax, Vents, Whales)
 
 # fmt: on
 
@@ -14,3 +14,4 @@ Whales.run()
 Digits.run()
 Lava.run()
 Syntax.run()
+Lights.run()

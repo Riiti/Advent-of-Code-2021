@@ -8,6 +8,7 @@ from aoc.challenges.day_7 import Whales
 from aoc.challenges.day_8 import Digits
 from aoc.challenges.day_9 import Lava
 from aoc.challenges.day_10 import Syntax
+from aoc.challenges.day_11 import Lights
 
 __all__ = [
     "Sonar",
@@ -20,4 +21,5 @@ __all__ = [
     "Digits",
     "Lava",
     "Syntax",
+    "Lights",
 ]
