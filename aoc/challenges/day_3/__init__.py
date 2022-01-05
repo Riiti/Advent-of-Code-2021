@@ -7,6 +7,21 @@ from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
+def recursive_solver(data: np.array, index: int = 0, co_scrub: bool = False):
+    if len(data) == 1:
+        return int("".join(str(bina) for bina in data[0]), 2)
+
+    # Calculate the mean to see which number is more frequent
+    mean = np.mean(data[:, index])
+    mean = 1 if mean == 0.5 else int(mean.round(0))
+    if not co_scrub:
+        mean = 1 - mean
+    data = data[data[:, index] == mean]
+
+    # Recureivly calculate data
+    return recursive_solver(data, index=(index + 1), co_scrub=co_scrub)
+
+
 class Diagnostik(Challenge):
     def __init__(self, frame: pd.DataFrame) -> None:
         self.values = frame
@@ -18,12 +33,8 @@ class Diagnostik(Challenge):
         return gamma * epsilon
 
     def part_two(self):
-        oxygen_gen = Diagnostik.recursive_solver(
-            self.values, index=0, co_scrub=True
-        )
-        co_scrubber = Diagnostik.recursive_solver(
-            self.values, index=0, co_scrub=False
-        )
+        oxygen_gen = recursive_solver(self.values, index=0, co_scrub=True)
+        co_scrubber = recursive_solver(self.values, index=0, co_scrub=False)
         return oxygen_gen * co_scrubber
 
     @classmethod
@@ -39,22 +50,3 @@ class Diagnostik(Challenge):
         diag = Diagnostik.read_file()
         print(f"Power consumption of Submarine is {diag.part_one()}.")
         print(f"Life support rating is {diag.part_two()}.")
-
-    @staticmethod
-    def recursive_solver(
-        data: np.array, index: int = 0, co_scrub: bool = False
-    ):
-        if len(data) == 1:
-            return int("".join(str(bina) for bina in data[0]), 2)
-
-        # Calculate the mean to see which number is more frequent
-        mean = np.mean(data[:, index])
-        mean = 1 if mean == 0.5 else int(mean.round(0))
-        if not co_scrub:
-            mean = 1 - mean
-        data = data[data[:, index] == mean]
-
-        # Recureivly calculate data
-        return Diagnostik.recursive_solver(
-            data, index=(index + 1), co_scrub=co_scrub
-        )
