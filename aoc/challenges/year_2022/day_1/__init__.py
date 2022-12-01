@@ -1,27 +1,28 @@
 from aoc.helper.abstract import Challenge
-from aoc.helper.filereader import read_file
-from aoc.helper.wrapper import day_wrapper
+
+
+def sum_chunks(data: list[str]) -> list[int]:
+    """Calc the sum over numbers till the first empty string is found"""
+    sums = []
+    sum = 0
+    for calories in data:
+        try:
+            sum += int(calories)
+        except ValueError:
+            sums.append(sum)
+            sum = 0
+    return sums
 
 
 class Solver(Challenge):
     def __init__(self, data: list[str]) -> None:
         self.data = self.preprocess(data)
 
-    def preprocess(self, data: list[str]) -> list[int]:
-        pass
+    def preprocess(self, data: list[str]) -> list[str]:
+        return [d.strip() for d in data]
 
     def part_one(self) -> int:
-        pass
+        return max(sum_chunks(self.data))
 
     def part_two(self) -> int:
-        pass
-
-
-@day_wrapper
-def run():
-    data = read_file("data/data.txt")
-    breakpoint()
-    solver = Solver(data)
-
-
-run()
+        return sum(sorted(sum_chunks(self.data), reverse=True)[:3])

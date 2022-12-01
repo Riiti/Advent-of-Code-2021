@@ -1,40 +1,58 @@
-from pathlib import Path
+from dataclasses import dataclass
+from enum import Enum
 
-import pandas as pd
 
 from aoc.helper.abstract import Challenge
-from aoc.helper.wrapper import day_wrapper
+
+
+class Comand(Enum):
+    forward = "forward"
+    down = "down"
+    up = "up"
+
+
+@dataclass
+class Instruction:
+    direction: Comand
+    value: int
+
+
+def value_by_field(instructions: list[Instruction], field: Comand) -> int:
+    """Calculate the sum of steps by a field"""
+    return sum([inst.value for inst in instructions if inst.direction == field])
+
+
+def aim_tracker(instructions: list[Instruction]) -> int:
+    aim, horizontal, depth = 0, 0, 0
+    for instruction in instructions:
+        if instruction.direction == Comand.forward:
+            horizontal += instruction.value
+            depth += aim * instruction.value
+        elif instruction.direction == Comand.down:
+            aim += instruction.value
+        elif instruction.direction == Comand.up:
+            aim -= instruction.value
+    return horizontal * depth
 
 
 class Solver(Challenge):
-    def __init__(self, frame: pd.DataFrame) -> None:
-        self.values = frame
+    def __init__(self, data: list[str]) -> None:
+        self.data = self.preprocess(data)
+
+    def preprocess(self, data: list[str]) -> list[Instruction]:
+        instructions = []
+        for d in data:
+            direction, value = d.strip().split(" ")
+            instructions.append(
+                Instruction(direction=Comand(direction), value=int(value))
+            )
+        return instructions
 
     def part_one(self):
-        sums = self.values.groupby("command").sum()
-        return int((sums.loc["down"] - sums.loc["up"]) * sums.loc["forward"])
+        forward = value_by_field(self.data, Comand.forward)
+        up = value_by_field(self.data, Comand.up)
+        down = value_by_field(self.data, Comand.down)
+        return (down - up) * forward
 
     def part_two(self):
-        pars = {"h_pos": 0, "depth": 0, "aim": 0}
-        for i, (command, amount) in self.values.iterrows():
-            if command in ("up", "down"):
-                faktor = -1 if command == "up" else +1
-                pars["aim"] += amount * faktor
-            elif command == "forward":
-                pars["h_pos"] += amount
-                pars["depth"] += pars["aim"] * amount
-            else:
-                raise ValueError("Unknown command: " + command)
-        return pars["h_pos"] * pars["depth"]
-
-    @classmethod
-    def read_file(cls):
-        path = f"{Path(__file__).parent}/data/commands.txt"
-        return cls(pd.read_csv(path, sep=" ", names=["command", "amount"]))
-
-    @staticmethod
-    @day_wrapper
-    def run():
-        com = Solver.read_file()
-        print(f"Submarine at {com.part_one()}.")
-        print(f"Submarine with aim at {com.part_two()}.")
+        return aim_tracker(self.data)
