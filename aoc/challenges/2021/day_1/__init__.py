@@ -6,7 +6,7 @@ from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
-class Sonar(Challenge):
+class Solver(Challenge):
     def __init__(self, array: np.array) -> None:
         self.values = array
 
@@ -28,7 +28,7 @@ class Sonar(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        sonar = Sonar.read_file()
+        sonar = Solver.read_file()
         print(f"Values larger than the previous {sonar.part_one()}.")
         print(
             f"Values larger than the previous in sliding window of three {sonar.part_two()}."

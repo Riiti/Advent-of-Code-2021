@@ -12,7 +12,3 @@ class Challenge(Protocol):
     def part_two(self) -> None:
         """Solve part one of the quiz"""
         ...
-
-    def read_file():
-        """Solve the quiz"""
-        ...

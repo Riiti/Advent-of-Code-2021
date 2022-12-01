@@ -17,7 +17,7 @@ def inconsitent_fuel(fuel: int) -> int:
     return fuel * (fuel + 1) // 2
 
 
-class Whales(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
         self.levels = range(min(self.numbers), max(self.numbers))
@@ -41,6 +41,6 @@ class Whales(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        fish = Whales.read_file()
+        fish = Solver.read_file()
         print(f"Fuel of crabs {fish.part_one()}.")
         print(f"Fuel of inconsistent {fish.part_two()}.")

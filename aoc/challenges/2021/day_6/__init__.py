@@ -19,7 +19,7 @@ def solve_with_recursion(days_till_spawn: int, days: int) -> int:
         return solve_with_recursion(days_till_spawn - 1, days - 1)
 
 
-class Lanternfish(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -39,6 +39,6 @@ class Lanternfish(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        fish = Lanternfish.read_file()
+        fish = Solver.read_file()
         print(f"After 80 days there are {fish.part_one()} fish in the sea.")
         print(f"After 256 days there are {fish.part_two()} fish in the sea.")

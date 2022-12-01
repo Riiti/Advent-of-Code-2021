@@ -1,23 +1,20 @@
-from pathlib import Path
-
-
 from aoc.helper.abstract import Challenge
+from aoc.helper.filereader import read_file
 from aoc.helper.wrapper import day_wrapper
 
 
-class Calories(Challenge):
+class Solver(Challenge):
+    def __init__(self, data: bytes) -> None:
+        self.data = data
+
     def part_one(self) -> int:
-        return np.sum(np.where(self.values[:-1] < self.values[1:], 1, 0))
+        pass
 
     def part_two(self) -> int:
-        window_sum = self.values[:-2] + self.values[1:-1] + self.values[2:]
-        return np.sum(np.where(window_sum[:-1] < window_sum[1:], 1, 0))
+        pass
 
 
 @day_wrapper
 def run():
-    solver = Calories().read_file()
-    print(f"Values larger than the previous {sonar.part_one()}.")
-    print(
-        f"Values larger than the previous in sliding window of three {sonar.part_two()}."
-    )
+    data = read_file
+    solver = Solver().read_file()

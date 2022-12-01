@@ -34,7 +34,7 @@ def calc_score(missing: List) -> int:
     return score
 
 
-class Syntax(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -55,9 +55,9 @@ class Syntax(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        syn = Syntax.read_file()
+        syn = Solver.read_file()
         print(f"Syntax score {syn.part_one()}.")
         print(f"Missing brackets score {syn.part_two()}.")
 
 
-print(Syntax.read_file().part_two())
+print(Solver.read_file().part_two())

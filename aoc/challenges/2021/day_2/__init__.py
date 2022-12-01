@@ -6,7 +6,7 @@ from aoc.helper.abstract import Challenge
 from aoc.helper.wrapper import day_wrapper
 
 
-class Command(Challenge):
+class Solver(Challenge):
     def __init__(self, frame: pd.DataFrame) -> None:
         self.values = frame
 
@@ -35,6 +35,6 @@ class Command(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        com = Command.read_file()
+        com = Solver.read_file()
         print(f"Submarine at {com.part_one()}.")
         print(f"Submarine with aim at {com.part_two()}.")

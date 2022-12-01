@@ -56,7 +56,7 @@ def create_connections(empty_map: np.array, numbers: np.array):
     return empty_map
 
 
-class Vents(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -84,6 +84,6 @@ class Vents(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        diag = Vents.read_file()
+        diag = Solver.read_file()
         print(f"More than one vent {diag.part_one()}.")
         print(f"More than one vent with diagonals {diag.part_two()}.")

@@ -22,7 +22,7 @@ def recursive_solver(data: np.array, index: int = 0, co_scrub: bool = False):
     return recursive_solver(data, index=(index + 1), co_scrub=co_scrub)
 
 
-class Diagnostik(Challenge):
+class Solver(Challenge):
     def __init__(self, frame: pd.DataFrame) -> None:
         self.values = frame
 
@@ -47,6 +47,6 @@ class Diagnostik(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        diag = Diagnostik.read_file()
+        diag = Solver.read_file()
         print(f"Power consumption of Submarine is {diag.part_one()}.")
         print(f"Life support rating is {diag.part_two()}.")

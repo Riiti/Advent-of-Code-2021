@@ -55,7 +55,7 @@ def add_adjacent(light_map: np.array, count: int) -> np.array:
     return add_adjacent(light_map, count + len(coords))
 
 
-class Lights(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -84,9 +84,9 @@ class Lights(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        syn = Lights.read_file()
+        syn = Solver.read_file()
         print(f"Lights score {syn.part_one()}.")
         print(f"Missing brackets score {syn.part_two()}.")
 
 
-print(Lights.read_file().run())
+print(Solver.read_file().run())

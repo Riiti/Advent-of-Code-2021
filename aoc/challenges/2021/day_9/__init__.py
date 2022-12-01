@@ -61,7 +61,7 @@ def calc_count(num: Dict, x_range: range, y_range: range) -> int:
     )
 
 
-class Lava(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -89,6 +89,6 @@ class Lava(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        lava = Lava.read_file()
+        lava = Solver.read_file()
         print(f"Lava lowspots {lava.part_one()}.")
         print(f"Digits encoding {lava.part_two()}.")

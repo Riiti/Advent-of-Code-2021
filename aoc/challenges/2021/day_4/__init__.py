@@ -55,7 +55,7 @@ class Field:
                     return found
 
 
-class Bingo(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List, fields: List[np.array]) -> None:
         self.numbers = numbers
         self.fields = fields
@@ -87,6 +87,6 @@ class Bingo(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        diag = Bingo.read_file()
+        diag = Solver.read_file()
         print(f"Bingo Score to win: {diag.part_one()}.")
         print(f"Last board to win: {diag.part_two()}.")

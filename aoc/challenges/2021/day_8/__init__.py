@@ -46,7 +46,7 @@ def string_to_number(output: List, mapping: Dict) -> int:
     return int("".join([str(mapping["".join(sorted(key))]) for key in output]))
 
 
-class Digits(Challenge):
+class Solver(Challenge):
     def __init__(self, numbers: List) -> None:
         self.numbers = numbers
 
@@ -75,6 +75,6 @@ class Digits(Challenge):
     @staticmethod
     @day_wrapper
     def run():
-        fish = Digits.read_file()
+        fish = Solver.read_file()
         print(f"Digits {fish.part_one()}.")
         print(f"Digits encoding {fish.part_two()}.")
