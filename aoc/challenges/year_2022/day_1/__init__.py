@@ -4,8 +4,11 @@ from aoc.helper.wrapper import day_wrapper
 
 
 class Solver(Challenge):
-    def __init__(self, data: bytes) -> None:
-        self.data = data
+    def __init__(self, data: list[str]) -> None:
+        self.data = self.preprocess(data)
+
+    def preprocess(self, data: list[str]) -> list[int]:
+        pass
 
     def part_one(self) -> int:
         pass
@@ -16,5 +19,9 @@ class Solver(Challenge):
 
 @day_wrapper
 def run():
-    data = read_file
-    solver = Solver().read_file()
+    data = read_file("data/data.txt")
+    breakpoint()
+    solver = Solver(data)
+
+
+run()

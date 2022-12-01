@@ -20,8 +20,8 @@ def solve_with_recursion(days_till_spawn: int, days: int) -> int:
 
 
 class Solver(Challenge):
-    def __init__(self, numbers: List) -> None:
-        self.numbers = numbers
+    def __init__(self, data: List) -> None:
+        self.data = data
 
     @classmethod
     def read_file(cls) -> Challenge:
@@ -31,10 +31,10 @@ class Solver(Challenge):
         return cls(numbers)
 
     def part_one(self) -> int:
-        return sum([solve_with_recursion(int(n), 80) for n in self.numbers])
+        return sum([solve_with_recursion(int(n), 80) for n in self.data])
 
     def part_two(self) -> int:
-        return sum([solve_with_recursion(int(n), 256) for n in self.numbers])
+        return sum([solve_with_recursion(int(n), 256) for n in self.data])
 
     @staticmethod
     @day_wrapper
