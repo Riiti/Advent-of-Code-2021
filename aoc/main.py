@@ -1,9 +1,9 @@
 from pathlib import Path
 
 from helper.filereader import read_file
-from aoc.challenges.year_2021.day_2 import Solver
+from aoc.challenges.year_2021.day_3 import Solver
 
-day = "2"
+day = "3"
 year = "2021"
 
 data_path = (

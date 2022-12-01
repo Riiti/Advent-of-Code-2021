@@ -1,36 +1,28 @@
-from unittest.mock import patch
-
-import numpy as np
-
-from aoc.challenges.day_3 import Diagnostik
+from aoc.challenges.year_2021.day_3 import Solver
 
 
 def _mock_file():
-    return Diagnostik(
-        np.array(
-            [
-                [0, 0, 1, 0, 0],
-                [1, 1, 1, 1, 0],
-                [1, 0, 1, 1, 0],
-                [1, 0, 1, 1, 1],
-                [1, 0, 1, 0, 1],
-                [0, 1, 1, 1, 1],
-                [0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0],
-                [1, 0, 0, 0, 0],
-                [1, 1, 0, 0, 1],
-                [0, 0, 0, 1, 0],
-                [0, 1, 0, 1, 0],
-            ]
-        )
-    )
+    return [
+        "00100",
+        "11110",
+        "10110",
+        "10111",
+        "10101",
+        "01111",
+        "00111",
+        "11100",
+        "10000",
+        "11001",
+        "00010",
+        "01010",
+    ]
 
 
-@patch("aoc.challenges.day_3.Diagnostik.read_file", _mock_file)
 def test_day_two_one():
-    assert Diagnostik.read_file().part_one() == 198
+    solver = Solver(_mock_file())
+    assert solver.part_one() == 198
 
 
-@patch("aoc.challenges.day_3.Diagnostik.read_file", _mock_file)
 def test_day_two_two():
-    assert Diagnostik.read_file().part_two() == 230
+    solver = Solver(_mock_file())
+    assert solver.part_two() == 230
