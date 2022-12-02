@@ -1,7 +1,5 @@
-import functools
 import inspect
 import os
-from pathlib import Path
 
 
 def day_wrapper(func):

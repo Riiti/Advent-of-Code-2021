@@ -1,17 +1,14 @@
-# fmt: off
-from aoc import (Bingo, Command, Diagnostik, Digits, Lanternfish, Lava, Lights,
-                 Sonar, Syntax, Vents, Whales)
+from pathlib import Path
 
-# fmt: on
+from helper.filereader import read_file
+from aoc.challenges.year_2022.day_2 import Solver
 
-Sonar.run()
-Command.run()
-Diagnostik.run()
-Bingo.run()
-Vents.run()
-Lanternfish.run()
-Whales.run()
-Digits.run()
-Lava.run()
-Syntax.run()
-Lights.run()
+day = "2"
+year = "2022"
+
+data_path = (
+    Path(__file__).parent / f"challenges/year_{year}/day_{day}/data/data.txt"
+)
+data = read_file(data_path)
+solver = Solver(data)
+print(solver.part_two())

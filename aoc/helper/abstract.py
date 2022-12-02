@@ -1,25 +1,18 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 
-class Challenge(ABC):
-    @abstractmethod
-    def __init__(self, data) -> None:
-        """Stores the Data from a file in a variable"""
+class Challenge(Protocol):
+    def __init__(self, data: list[str]) -> None:
+        ...
 
-    @abstractmethod
-    def part_one(self) -> None:
+    def preprocess(self, data: list[str]) -> list[str | int]:
+        """Preprocess given data"""
+        ...
+
+    def part_one(self) -> int:
         """Solve part one of the quiz"""
+        ...
 
-    @abstractmethod
-    def part_two(self) -> None:
+    def part_two(self) -> int:
         """Solve part one of the quiz"""
-
-    @classmethod
-    @abstractmethod
-    def read_file(cls):
-        """Read data from given file"""
-
-    @staticmethod
-    @abstractmethod
-    def run():
-        """Solve the quiz"""
+        ...
