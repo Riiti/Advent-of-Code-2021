@@ -11,4 +11,4 @@ data_path = (
 )
 data = read_file(data_path)
 solver = Solver(data)
-print(solver.part_one())
+print(solver.part_two())
