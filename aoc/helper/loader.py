@@ -21,11 +21,11 @@ def load_solver(base_path: Path) -> ModuleType:
 
 def create_if_doesnt_exist(base_path: Path) -> None:
     create = input(
-        "The challenge you are looking for does not exist want to create it now y/n?"
+        "The challenge you are looking for does not exist want to create it now y/n?\n"
     )
     if create.strip() == "y":
         create_files(base_path)
-        raise AssertionError("Files createt, you can start on the solution now")
+        raise AssertionError("Files created, you can start on the solution now")
     raise FileNotFoundError("No solution for the quiz you requestet")
 
 
@@ -41,15 +41,18 @@ def load_data(base_path: Path) -> list[str]:
 
 
 def solve_quiz(day: str, year: str) -> None:
-    path = generate_base_path(day, year)
-    module = load_solver(path)
-    data = load_data(path)
-    solver = module.Solver(data)
-    print(solver.part_one())
-    print(solver.part_two())
+    try:
+        path = generate_base_path(day, year)
+        module = load_solver(path)
+        data = load_data(path)
+        solver = module.Solver(data)
+        print(solver.part_one())
+        print(solver.part_two())
+    except (AssertionError, FileNotFoundError) as e:
+        print(e)
 
 
-def collect_arguments() -> None:
+def collect_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "day", help="Enter the day of the challenge you want to solve", type=int
@@ -59,5 +62,4 @@ def collect_arguments() -> None:
         help="Enter the year of the challenge you want to solve",
         type=int,
     )
-    args = parser.parse_args()
-    solve_quiz(args.day, args.year)
+    return parser.parse_args()

@@ -1,8 +1,9 @@
-from aoc.helper.loader import collect_arguments
+from aoc.helper.loader import collect_arguments, solve_quiz
 
 
 def main() -> None:
-    collect_arguments()
+    args = collect_arguments()
+    solve_quiz(args.day, args.year)
 
 
 if __name__ == "__main__":
