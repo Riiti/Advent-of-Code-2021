@@ -21,7 +21,7 @@ class Solver(Challenge):
         self.data = self.preprocess(data)
 
     def preprocess(self, data: list[str]) -> np.ndarray:
-        values = [[int(x) for x in num] for num in data]
+        values = [[int(x) for x in num.strip()] for num in data]
         return np.array(values)
 
     def part_one(self):
