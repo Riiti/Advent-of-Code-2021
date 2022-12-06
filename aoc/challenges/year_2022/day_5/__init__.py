@@ -19,6 +19,7 @@ def fill_pillars(containers: list[str]) -> dict[int, list[str]]:
 
 
 def extract_instructions(instructions: list[str]) -> list[tuple[int, int, int]]:
+    """Extract instructions into quantity, source and goal"""
     return [
         tuple(int(num) for num in re.findall(r"\d+", inst))
         for inst in instructions
@@ -28,6 +29,7 @@ def extract_instructions(instructions: list[str]) -> list[tuple[int, int, int]]:
 def reorder_columns(
     pillars: dict[int, list[str]], instructions: list[Any], inverse: bool = True
 ) -> dict[int, list[str]]:
+    """Rearange pillars based on instructions"""
     pill = deepcopy(pillars)
     order = -1 if inverse else 1
     for inst in instructions:
